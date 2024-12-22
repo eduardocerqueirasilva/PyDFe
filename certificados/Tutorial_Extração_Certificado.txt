@@ -1,0 +1,22 @@
+🛠️ Instruções para Configurar e Executar a Extração do Certificado
+
+Siga as etapas abaixo para realizar a extração do seu certificado `.pfx` corretamente:
+
+1️⃣ Coloque seu certificado no diretório correto
+   - Primeiro, você precisa salvar o seu arquivo de certificado com extensão `.pfx` no diretório chamado `certificados`.
+   - Este diretório é o local onde o script buscará seu certificado para realizar a extração.
+
+2️⃣ Edite o arquivo 'empresas.py' com as informações necessárias   
+   
+   EMPRESAS = {
+    "EMPRESA1": ["empresa1.pfx", "cp123cd"],
+    "EMPRESA2": ["empresa2.pfx", "cp123cd"]
+   }
+   - Permite utilizar uma ou mais empresas. Necessitando informar o nome do seu certificado com sua respectiva senha. 
+
+3️⃣ O Sistema fará a extração do certificado automaticamente ao executar uma 'Consulta' ou 'Manifestação'.
+   - Será criado 2 arquivos para cada empresa, um contendo o 'Certificado' e o outro a 'Chave'. 
+   Ex: EMPRESA_VALIDO_ATE_31-07-2025_cert.pem e EMPRESA_VALIDO_ATE_31-07-2025_key.pem
+
+Seguindo esses passos, você concluirá a extração com sucesso.
+Caso encontre algum erro, verifique se o nome do arquivo e a senha estão corretos, e se as dependências necessárias estão instaladas.

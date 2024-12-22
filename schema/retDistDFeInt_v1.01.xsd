@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<include schemaLocation="tiposDistDFe_v1.01.xsd" />
+	<element name="retDistDFeInt">
+		<annotation>
+			<documentation>
+				Schema do resultado do pedido de distribuição de DF-e de interesse
+			</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element name="tpAmb" type="TAmb">
+					<annotation>
+						<documentation>
+							Identificação do Ambiente:
+							1 - Produção
+							2 - Homologação
+						</documentation>
+					</annotation>
+				</element>
+				<element name="verAplic" type="TVerAplic">
+					<annotation>
+						<documentation>
+							Versão do Web Service NFeDistribuicaoDFe
+						</documentation>
+					</annotation>
+				</element>
+				<element name="cStat" type="TStat">
+					<annotation>
+						<documentation>
+							Código do status de processamento da requisição
+						</documentation>
+					</annotation>
+				</element>
+				<element name="xMotivo" type="TMotivo">
+					<annotation>
+						<documentation>
+							Descrição literal do status do processamento da requisição
+						</documentation>
+					</annotation>
+				</element>
+				<element name="dhResp" type="TDateTimeUTC">
+					<annotation>
+						<documentation>
+							Data e Hora de processamento da requisição no formato AAAA-MM-DDTHH:MM:SSTZD
+						</documentation>
+					</annotation>
+				</element>
+				<element name="ultNSU" type="TNSU">
+					<annotation>
+						<documentation>
+							Último NSU pesquisado no Ambiente Nacional. Se for o caso, o solicitante pode continuar a consulta a partir deste NSU para obter novos resultados.
+						</documentation>
+					</annotation>
+				</element>
+				<element name="maxNSU" type="TNSU">
+					<annotation>
+						<documentation>
+							Maior NSU existente no Ambiente Nacional para o CNPJ/CPF informado
+						</documentation>
+					</annotation>
+				</element>
+				<element name="loteDistDFeInt" minOccurs="0">
+					<annotation>
+						<documentation>
+							Conjunto de informações resumidas e documentos fiscais eletrônicos de interesse da pessoa ou empresa.
+						</documentation>
+					</annotation>
+					<complexType>
+						<sequence maxOccurs="50">
+							<element name="docZip">
+								<annotation>
+									<documentation>
+										Informação resumida ou documento fiscal eletrônico de interesse da pessoa ou empresa. O conteúdo desta tag estará compactado no padrão gZip. O tipo do campo é base64Binary.
+									</documentation>
+								</annotation>
+								<complexType>
+									<simpleContent>
+										<extension base="xs:base64Binary">
+											<attribute name="NSU" type="TNSU" use="optional">
+												<annotation>
+													<documentation>
+														NSU do documento fiscal
+													</documentation>
+												</annotation>
+											</attribute>
+											<attribute name="schema" type="xs:string" use="required">
+												<annotation>
+													<documentation>
+														Identificação do Schema XML que será utilizado para validar o XML existente no conteúdo da tag docZip. Vai identificar o tipo do documento e sua versão. Exemplos: resNFe_v1.00.xsd, procNFe_v3.10.xsd, resEvento_1.00.xsd, procEventoNFe_v1.00.xsd
+													</documentation>
+												</annotation>
+											</attribute>
+										</extension>
+									</simpleContent>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+			<attribute name="versao" type="TVerDistDFe" use="required" />
+		</complexType>
+	</element>
+</schema>
