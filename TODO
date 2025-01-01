@@ -1,0 +1,3 @@
+1 - se o último retorno é igual a 137 tem que esperar 1 hora para a próxima consulta, então tem que armazenar a data da ultima consulta que o retorno é 137
+2 - se (tag:ultNSU) for igual ao maior NSU do Ambiente Nacional (tag:maxNSU), então não existem 
+mais documentos a serem pesquisados no momento
